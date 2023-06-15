@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      body {
+        background: #fafafa;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        padding: 2vw;
+        font-size: 14px;
+        line-height: 1.5em;
+        max-width: 800px;
+      }
+
+      @media(min-width: 700px) {
+        body {
+          padding: 2vw 10vw;
+        }
+      }
+
+      h1 {
+        font-size: 1.8em;
+        margin-bottom: 0;
+        margin-top: 3vw;
+      }
+
+      h2 {
+        font-size: 1.1em;
+        margin-bottom: 0;
+        margin-top: 1vw;
+      }
+
+      h3 {
+        font-size: 1em;
+        margin-top: 2em;
+        font-weight: 500;
+        color: #222;
+      }
+
+      h1 + h3 {
+        margin-top: 0.6em;
+      }
+
+      h4 {
+        margin-block-end: 0.5em;
+      }
+
+      hr {
+        border: 1px dashed #ccc;
+        margin: 5vw 0;
+      }
+
+      footer {
+        display: flex;
+        margin-left: -1vw;
+        margin-top: vw;
+        justify-content: center;
+      }
+
+      footer a {
+        padding: 0.75em;
+      }
+
+      footer a:hover svg {
+        fill: #0b7df3;
+        transform: scale(1.05);
+      }
+
+      footer svg {
+        fill: #999;
+        width: 2em;
+        height: 2em;
+      }
+
+      #headshot {
+        width: 20vw;
+        border-radius: 100%;
+      }
+
+      @media screen and (min-width: 480px) {
+        body {
+          font-size: 18px;
+        }
+
+        #headshot {
+          width: 12vw;
+        }
+
+        footer svg {
+          width: 2em;
+          height: 2em;
+        }
+
+        footer a {
+          padding: 1em;
+        }
+      }
+
+      pre {
+        background: #333;
+        color: #fafafa;
+        padding: 1em;
+        border-radius: 0.5em;
+      }
+
+      h4 + pre, h4 + p {
+        margin-top: 0.5em;
+      }
+
+      code {
+        white-space: pre-wrap;
+      }
+    </style>
+
+    <title><%= meta[:title] || 'Nashdown' %></title>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

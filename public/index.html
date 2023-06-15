@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      body {
+        background: #fafafa;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        padding: 2vw;
+        font-size: 14px;
+        line-height: 1.5em;
+        max-width: 800px;
+      }
+
+      @media(min-width: 700px) {
+        body {
+          padding: 2vw 10vw;
+        }
+      }
+
+      h1 {
+        font-size: 1.8em;
+        margin-bottom: 0;
+        margin-top: 3vw;
+      }
+
+      h2 {
+        font-size: 1.1em;
+        margin-bottom: 0;
+        margin-top: 1vw;
+      }
+
+      h3 {
+        font-size: 1em;
+        margin-top: 2em;
+        font-weight: 500;
+        color: #222;
+      }
+
+      h1 + h3 {
+        margin-top: 0.6em;
+      }
+
+      h4 {
+        margin-block-end: 0.5em;
+      }
+
+      hr {
+        border: 1px dashed #ccc;
+        margin: 5vw 0;
+      }
+
+      footer {
+        display: flex;
+        margin-left: -1vw;
+        margin-top: vw;
+        justify-content: center;
+      }
+
+      footer a {
+        padding: 0.75em;
+      }
+
+      footer a:hover svg {
+        fill: #0b7df3;
+        transform: scale(1.05);
+      }
+
+      footer svg {
+        fill: #999;
+        width: 2em;
+        height: 2em;
+      }
+
+      #headshot {
+        width: 20vw;
+        border-radius: 100%;
+      }
+
+      @media screen and (min-width: 480px) {
+        body {
+          font-size: 18px;
+        }
+
+        #headshot {
+          width: 12vw;
+        }
+
+        footer svg {
+          width: 2em;
+          height: 2em;
+        }
+
+        footer a {
+          padding: 1em;
+        }
+      }
+
+      pre {
+        background: #333;
+        color: #fafafa;
+        padding: 1em;
+        border-radius: 0.5em;
+      }
+
+      h4 + pre, h4 + p {
+        margin-top: 0.5em;
+      }
+
+      code {
+        white-space: pre-wrap;
+      }
+    </style>
+
+    <title>Nashdown</title>
+  </head>
+
+  <body>
+    <h1>Nashdown</h1>
+
+<h3>A human and machine readable plain text syntax for Nashville Number System chord charts. <em>GitHub: <a href="https://github.com/alexford/nashdown">alexford/nashdown</a></em></h3>
+
+<p>By&nbsp;<a href="https://alexford.io">Alex&nbsp;Ford</a></p>
+
+<hr>
+
+<p><em>NOTE: All of this is considered a work in progress! There are many things that still need defined.</em></p>
+
+<h2>What is this?</h2>
+
+<p><strong>The <a href="https://en.wikipedia.org/wiki/Nashville_number_system">Nashville Number System</a></strong> (or Nashville Notation) is pervasive, powerful, and inherently analog: traditionally, charts are hand written, born out of the need to quickly notate and share song structure, harmony, and rhythm.</p>
+
+<p>This website defines <strong>Nashdown</strong>: an <em>accessible</em>, <em>parseable</em>, <em>portable</em> format for digital number charts:</p>
+
+<ul>
+<li><em>Accessible</em>: Like the Nashville Number System itself, Nashdown charts are meant to be easy for people to create, understand, and play.</li>
+<li><em>Parseable</em>: While human readable, the Nashdown syntax can be predictably parsed in software to powerful effect. For example, Nashdown could be rendered into more traditional looking charts for printing and sharing if desired, converted to other kinds of notation, or even played digitally.</li>
+<li><em>Portable</em>: Nashdown charts are plain text, so they can be viewed and edited by any system. Nashdown files (<code>.nd</code>) are a natural fit for any kind of text processing, version control, etc.</li>
+</ul>
+
+<p>Nashdown is inspired by <a href="https://daringfireball.net/projects/markdown/">Markdown</a> in spirit (and name), but is not otherwise related to that project in any way.</p>
+
+<h2>What does Nashdown look like?</h2>
+
+<p><em>(If you&#39;re not familiar with the Nashville Number System (NNS) itself, <a href="https://en.wikipedia.org/wiki/Nashville_Number_System">you should read about it first!</a></em>)</p>
+
+<p>The building blocks of Nashdown, like the NNS itself, are chords, bars, and lines.</p>
+
+<h4>Chords</h4>
+
+<ul>
+<li>Each chord is unsurprisingly identified by its scale degree: <code>1</code> or <code>4</code>.</li>
+<li>Chords can be explicitly marked as minor with a dash: <code>6-</code></li>
+<li><em>See &quot;More examples and ideas&quot; below for more proposed chord flavors</em></li>
+</ul>
+
+<h4>Bars</h4>
+
+<ul>
+<li>Every bar is separated by a space: <code>1 1 1 1</code> represents four bars of the &quot;I&quot; chord.</li>
+<li>Bars can contain multiple chords, using an underscore: <code>1_4</code>
+
+<ul>
+<li>This is meant to evoke the NNS convention of &quot;underlining&quot; multi-chord bars</li>
+</ul></li>
+<li>The number of beats for a Chord can be marked explicitly with single quote marks: <code>1&#39;&#39;&#39;_4</code> represents three beats of the &quot;1&quot; chord followed by one beat of the &quot;4&quot; chord (assuming 4/4 time).</li>
+</ul>
+
+<h4>Lines and Sections</h4>
+
+<p>The chart is separated into lines.</p>
+
+<pre><code>1 1 4 5
+1 1 4 5
+</code></pre>
+
+<p>Lines can be as long or as short as needed, whatever fits the structure of the song:</p>
+
+<pre><code>1 1 4 5 1 1 4 5
+1 1 4 1
+</code></pre>
+
+<p>Lines can be separated into sections, using a blank line between them:</p>
+
+<pre><code>1 4 5 4
+1 4 5 4
+
+1 5 1 4
+1 5 1 4
+</code></pre>
+
+<p>Sections can optionally be named, using a <code>#</code> character:</p>
+
+<pre><code># Intro
+1 1 1 1
+
+# V1
+1 4 5 4
+1 4 5 4
+
+# Chorus
+1 5 1 4
+1 5 1 4
+
+# Ending
+1 4 1 4
+1 4 4- 1
+</code></pre>
+
+<h3>What&#39;s next?</h3>
+
+<p><em>TODO</em></p>
+
+<h3>Contribute to Nashdown</h3>
+
+<p><em>TODO</em></p>
+
+<h3>License</h3>
+
+<p>The Nashdown syntax itself is in the public domain. Anyone can use the idea freely including releasing software with its own implementation of Nashdown under any license, open or proprietary. I ask that any use of syntax referred to as &quot;Nashdown&quot; stick as closely as possible to the definition on this website (see &quot;Contribute to Nashdown&quot;).</p>
+
+<p>Any Nashdown software that I release myself will have its own license: open source, proprietary, or both.</p>
+
+<p>The <em>content</em> of <em>this repository and website</em> is Copyright 2023 Alex Ford. It is not free to reproduce or include in other work without permission.</p>
+
+<hr>
+
+<h2>More ideas for and examples of Nashdown syntax</h2>
+
+<p><em>NOTE (again): This is a work in progress, early proposal</em></p>
+
+<h4>Chord qualities</h4>
+
+<p><em>Given a 5 chord:</em></p>
+
+<ul>
+<li>Minor: <code>5-</code> (or <code>5m</code>?)</li>
+<li>Dominant 7th: <code>5d7</code> (or <code>57</code>?)
+
+<ul>
+<li>e.g on a minor chord: <code>5-7</code></li>
+</ul></li>
+<li>Major 7th: <code>5M7</code> (or <code>5maj7</code> or <code>5Maj7</code>?)</li>
+<li>Diminished: <code>5o</code> or <code>5°</code>
+
+<ul>
+<li>Diminished 7th: <code>5o7</code> (or <code>5°7</code>?)</li>
+</ul></li>
+<li>Augmented 5th: <code>5+</code>
+
+<ul>
+<li>Augmented minor 7th: <code>5+-7</code>?</li>
+</ul></li>
+<li><em>TODO: What about half diminished, other less common qualities?</em></li>
+</ul>
+
+<h4>Extensions beyond 7, suspended</h4>
+
+<p><em>Given a 4 chord:</em></p>
+
+<ul>
+<li>Suspended: <code>4sus4</code> for sus4, <code>4sus2</code> for sus2, etc.</li>
+<li>Extensions: <code>4add2</code>, <code>4add9</code></li>
+</ul>
+
+<h4>Inversions</h4>
+
+<pre><code>5/7
+</code></pre>
+
+<h4>Accidentals</h4>
+
+<pre><code>b6 b7
+</code></pre>
+
+<h4>Diamonds</h4>
+
+<pre><code>1 1 4 &lt;5&gt;
+</code></pre>
+
+<h4>Watch</h4>
+
+<pre><code>1 1 4 &lt;@5&gt;
+</code></pre>
+
+<h4>Marcato</h4>
+
+<pre><code>1 1 4 ^5
+</code></pre>
+
+<h4>Push</h4>
+
+<pre><code>1 1 4 &lt;5
+</code></pre>
+
+<h4>Ties</h4>
+
+<pre><code>1 1 4 &lt;5&gt;~&lt;5&gt;
+</code></pre>
+
+<h4>X and • (&quot;same chord as last bar&quot;)</h4>
+
+<pre><code>1 5 1/3 x
+1 • 5 •
+</code></pre>
+
+<h4>Dynamics</h4>
+
+<pre><code>mp 1 1 4 1
+f 1 1 5 1
+ff -7 5 1 1
+</code></pre>
+
+<h4>Repeats</h4>
+
+<pre><code>|: 1 1 4 5
+1 1 | 4 5 :| 5 4 |    (first and last time)
+</code></pre>
+
+<h4>Rehearsal marks and notes</h4>
+
+<pre><code># Verse
+1 1 4 5
+--Bass enters--
+1 1 4 5
+
+# Chorus
+1 1 5 1
+</code></pre>
+
+<h4>Title, key, bpm, feel</h4>
+
+<pre><code>&quot;The Title&quot;
+Eb, Blues, 4/4, 150bpm
+</code></pre>
+
+<h4>Aspirational example of a full chart</h4>
+
+<p><em>From page 25 of “Song charting made easy”</em></p>
+
+<pre><code>&quot;One More Minute With You&quot;
+Pop-Rock
+F#
+4/4
+140bpm
+
+# I
+--1x guitar only--
+||: 1 1 1 1
+
+# V
+mp
+1 1 1 1
+4 4 4 4
+1 1 1 1
+4 4 4 4
+
+# Cha
+--Full band--
+mf
+&lt;2-&gt;~&lt;2-&gt; &lt;4&gt;~&lt;4&gt; --Diamond 1x only!--
+&lt;2-&gt;~&lt;2-&gt; 4 4
+
+# Ch
+f
+1 5 1/3 4
+1 4 | b3 &lt;4&gt; :|| b3 4 |
+
+# Ch
+f
+&lt;1 5 1/3 4
+1 5 b3 4
+
+# Br
+mp
+b6 b6 b7 b7
+1 1
+f
+b6 b6 b7 b7
+4 4 b3 4
+
+# Solo
+1 5 1/3 4
+1 5 b3 4
+
+# Ch
+1 5 ^1/3 4
+&lt;1 5 b3 4
+
+# Ch
+&gt;1 5 1/3 4
+1 5 b3 4
+
+# Out
+||: 1 5 1/3 4
+1 5 b3 4 :|| &lt;@1&gt;
+</code></pre>
+
+  </body>
+</html>

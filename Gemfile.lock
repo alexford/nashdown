@@ -1,0 +1,44 @@
+GIT
+  remote: https://github.com/alexford/overt.git
+  revision: c7b6cdf9bbce3d58267646a6c7205a6a5ee6f5af
+  specs:
+    overt (0.0.1)
+      async
+      formatador
+      redcarpet
+      thor
+      tilt
+      zeitwerk
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    async (2.6.2)
+      console (~> 1.10)
+      fiber-annotation
+      io-event (~> 1.1)
+      timers (~> 4.1)
+    console (1.17.2)
+      fiber-annotation
+      fiber-local
+    fiber-annotation (0.2.0)
+    fiber-local (1.0.0)
+    formatador (1.1.0)
+    io-event (1.2.2)
+    redcarpet (3.6.0)
+    thor (1.2.2)
+    tilt (2.2.0)
+    timers (4.3.5)
+    zeitwerk (2.6.8)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  overt!
+
+RUBY VERSION
+   ruby 3.1.4p223
+
+BUNDLED WITH
+   2.3.26
